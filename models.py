@@ -5,6 +5,13 @@ from sqlalchemy.orm import relationship, Session
 engine = create_engine("sqlite:///my_post.db")
 Base = declarative_base(bind=engine)
 
+posts_tags_m2m_table = Table(
+    "posts_tags",
+    Base.metadata,
+    Column("post_id", Integer, ForeignKey("posts.id"), primary_key=True),
+    Column("tag_id", Integer, ForeignKey("tags.id"), primary_key=True),
+)
+
 
 class User(Base):
     __tablename__ = "users"
@@ -32,7 +39,7 @@ class Post(Base):
     date = Column(Date, nullable=False)
 
     user = relationship(User, back_populates="posts")
-    tags = relationship("Tag", back_populates="posts")
+    tags = relationship("Tag", secondary=posts_tags_m2m_table, back_populates="posts")
 
     def __str__(self):
         return str(self.title)
@@ -47,7 +54,7 @@ class Tag(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(16), nullable=False, unique=True)
 
-    posts = relationship("Post", back_populates="tags")
+    posts = relationship("Post", secondary=posts_tags_m2m_table, back_populates="tags")
 
     def __str__(self):
         return str(self.name)
