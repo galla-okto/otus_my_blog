@@ -20,3 +20,23 @@ class User(Base):
     def __repr__(self):
         return str(self)
 
+
+class Post(Base):
+    __tablename__ = "posts"
+
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey(User.id), nullable=False)
+    title = Column(String(50), nullable=False)
+    text = Column(Text, nullable=False)
+    is_published = Column(Boolean, nullable=False, default=False)
+    date = Column(Date, nullable=False)
+
+    user = relationship(User, back_populates="posts")
+    tags = relationship("Tag", secondary=posts_tags_m2m_table, back_populates="posts")
+
+    def __str__(self):
+        return str(self.title)
+
+    def __repr__(self):
+        return str(self)
+
