@@ -32,10 +32,25 @@ class Post(Base):
     date = Column(Date, nullable=False)
 
     user = relationship(User, back_populates="posts")
-    tags = relationship("Tag", secondary=posts_tags_m2m_table, back_populates="posts")
+    tags = relationship("Tag", back_populates="posts")
 
     def __str__(self):
         return str(self.title)
+
+    def __repr__(self):
+        return str(self)
+
+
+class Tag(Base):
+    __tablename__ = "tags"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(16), nullable=False, unique=True)
+
+    posts = relationship("Post", back_populates="tags")
+
+    def __str__(self):
+        return str(self.name)
 
     def __repr__(self):
         return str(self)
