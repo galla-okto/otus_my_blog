@@ -20,6 +20,7 @@ class User(Base):
     username = Column(String(30), nullable=False)
 
     posts = relationship("Post", back_populates="user")
+    comments = relationship("Comment", back_populates="user")
 
     def __str__(self):
         return str(self.username)
@@ -40,6 +41,7 @@ class Post(Base):
 
     user = relationship(User, back_populates="posts")
     tags = relationship("Tag", secondary=posts_tags_m2m_table, back_populates="posts")
+    comments = relationship("Comment", back_populates="posts")
 
     def __str__(self):
         return str(self.title)
@@ -54,7 +56,7 @@ class Tag(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(16), nullable=False, unique=True)
 
-    posts = relationship("Post", secondary=posts_tags_m2m_table, back_populates="tags")
+    posts = relationship(Post, secondary=posts_tags_m2m_table, back_populates="tags")
 
     def __str__(self):
         return str(self.name)
@@ -72,6 +74,9 @@ class Comment(Base):
     date = Column(Date, nullable=False)
     text = Column(Text, nullable=False)
     parent_comment = Column(Integer, nullable=True)
+
+    user = relationship(User, back_populates="comments")
+    posts = relationship(Post, back_populates="comments")
 
     def __str__(self):
         return str(self.text)
