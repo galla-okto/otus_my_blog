@@ -55,3 +55,20 @@ class Tag(Base):
     def __repr__(self):
         return str(self)
 
+
+class Comment(Base):
+    __tablename__ = "comments"
+
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey(User.id), nullable=False)
+    id_post = Column(Integer, ForeignKey(Post.id),nullable=False)
+    date = Column(Date, nullable=False)
+    text = Column(Text, nullable=False)
+    parent_comment = Column(Integer, nullable=True)
+
+    def __str__(self):
+        return str(self.text)
+
+    def __repr__(self):
+        return str(self)
+
