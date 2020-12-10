@@ -3,6 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, Session
 
 engine = create_engine("sqlite:///my_post.db")
+metadata = MetaData(bind=engine)
 Base = declarative_base(bind=engine)
 
 posts_tags_m2m_table = Table(
@@ -133,3 +134,16 @@ def create_users_and_posts_and_tags_and_comments():
 if __name__ == '__main__':
     Base.metadata.create_all()
     create_users_and_posts_and_tags_and_comments()
+
+    posts_table = Table(
+        "posts",
+        metadata,
+        autoload=True
+    )
+
+    posts111 = posts_table.get(Post.user_id == 1)
+
+    print(posts111.user_id)
+
+    # for c in posts_table.
+    #     print(f"Column {c.name!r}:", repr(c))
