@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, Text, Boolean, ForeignKey, Date
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, Text, Boolean, ForeignKey, select
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, Session
 
@@ -90,6 +90,8 @@ def create_users_and_posts_and_tags_and_comments():
     session.add(user1)
     user2 = User(username="Mark")
     session.add(user2)
+    user3 = User(username="Olga")
+    session.add(user3)
 
     session.flush()
 
@@ -100,8 +102,13 @@ def create_users_and_posts_and_tags_and_comments():
     post2 = Post(user_id=user1.id, title="Aerobic exercise",
                  text="Aerobic exercise is any type of continuous activity that works your heart, lungs and muscles. "
                       "Examples include brisk walking, cycling, running, swimming, dancing and football.")
+    post3 = Post(user_id=user3.id, title="Eating and exercise: 5 tips to maximize your workouts",
+                 text="1. Eat a healthy breakfast, 2. Watch the portion size, 3. Snack well, 4. Eat after you exercise "
+                      "5. Drink up")
+
     session.add(post1)
     session.add(post2)
+    session.add(post3)
 
     tag_news_1 = Tag(name="exercise")
     tag_news_2 = Tag(name="aerobic")
@@ -115,6 +122,7 @@ def create_users_and_posts_and_tags_and_comments():
 
     post1.tags.extend((tag_news_1, tag_news_3))
     post2.tags.extend((tag_news_1, tag_news_2))
+    post3.tags.extend((tag_news_1, ))
 
     comment1 = Comment(user_id=user2.id, id_post=post1.id,
                        text='Swimming is a great form of exercise for people of all ages and abilities.')
@@ -130,20 +138,30 @@ def create_users_and_posts_and_tags_and_comments():
 
     session.close()
 
+def get_posts_by_id_user(user):
+    session = Session()
+    result = session.query(Post).filter_by(user_id=user)
+
+    print('Posts by user', user)
+    for row in result:
+        print('Title: ', row.title, ' Text: ', row.text)
+
+def get_posts_by_tag(tag):
+    session = Session()
+    result = session.query(Post).join(posts_tags_m2m_table).filter(posts_tags_m2m_table.columns.tag_id == tag)
+
+    print('Posts with tag', tag)
+
+    for row in result:
+        print(row.title)
+
 
 if __name__ == '__main__':
     Base.metadata.create_all()
     create_users_and_posts_and_tags_and_comments()
 
-    posts_table = Table(
-        "posts",
-        metadata,
-        autoload=True
-    )
+    user = 1
+    get_posts_by_id_user(user)
 
-    posts111 = posts_table.get(Post.user_id == 1)
-
-    print(posts111.user_id)
-
-    # for c in posts_table.
-    #     print(f"Column {c.name!r}:", repr(c))
+    tag = 3
+    get_posts_by_tag(tag)
