@@ -1,0 +1,116 @@
+:root {
+    --basic-black: #000000;
+    --basic-half-gray: #7E7E7E;
+    --basic-grey-light: #E5E5E5;
+    --basic-white: #FFFFFF;
+
+    --special-yellow: #F7E296;
+    --special-yellow-dark: #F0C52E;
+    --special-yellow-light: #F7E296;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 30px;
+  color: var(--basic-black);
+
+  background: var(--basic-white);
+}
+
+a {
+  text-decoration: none;
+  color: var(--basic-black);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.page_whole {
+  height: 100%;
+}
+
+.page {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  align-content: start;
+}
+
+.visually-hidden:not(:focus):not(:active),
+input[type="checkbox"].visually-hidden,
+input[type="radio"].visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.button {
+  display: inline-block;
+  vertical-align: top;
+  min-width: 160px;
+  border: none;
+
+  padding-top: 10px;
+  padding-bottom: 9px;
+
+  font-family: "Gilroy", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 800;
+
+  text-align: center;
+  color: var(--basic-black);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+
+  background-image: linear-gradient(to bottom, transparent 40%,
+                                               var(--special-yellow-dark) 42.5%,
+                                               var(--special-yellow-dark) 57.5%,
+                                               transparent 60%);
+  background-color: transparent;
+}
+
+.button:hover {
+  background-color: var(--special-yellow-dark);
+}
+
+.button:focus,
+.button:active {
+  color: var(--color-dark-text-focus);
+}
+
+.container {
+  width: 1160px;
+
+  padding: 0;
+  margin: 0 auto;
+}
+
+
+.page__header {
+    min-height: 70px;
+
+    padding-top: 5px;
+    margin-bottom: 0;
+
+    background-color: var(--special-yellow);
+}
+
+.main-header__navigation {
+    display: flex;
+    flex-direction: column;
+}
+
