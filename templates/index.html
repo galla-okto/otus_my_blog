@@ -9,35 +9,36 @@
 
 <body class="page">
   <header class="page__header main-header">
-    <nav class="main-header__navigation main_nav">
-      <a href="#" class="main_nav__toggle-menu">
-        <svg id="icon-hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 25" width="40" height="25">
-          <path d="M38 3H2L0 2V1l2-1h36l1 1v1l-1 1zm0 11H2l-2-1v-1l2-1h36l1 1v1l-1 1zm0 11H2l-2-1v-1l2-1h36l1 1v1l-1 1z">
-          </path>
-        </svg>
-      </a>
-      <a href="#" class="main_nav__a1">here</a>
-      <div class="main_nav__menu">
-        <ul class="list">
-          <li class="site-list__item site-list__item--active">
-            <a href="#">Главная</a>
-          </li>
-          <li class="site-list__item">
-            <a href="contacts.html">Контакты</a>
-          </li>
-        </ul>
-      </div>
-      <a href="#" class="main_nav__logo logo">
-        <img class="logo__image" src="img/logo.png" width="50" height="50" alt="Workouts">
-      </a>
-      <form class="main_nav__search-form search-form" action="https://echo.htmlacademy.ru" method="post">
-        <label for="search"></label>
-        <input class="search-form__input" id="search" aria-label="поиск" type="text" name="key-word" placeholder="Поиск по сайту">
-        <button class="search-form__button" type="submit"></button>
-      </form>
-    </nav>
-  </header>
+    <div class="container">
+      <nav class="main-header__navigation main_nav">
+        <div class="main_nav__wrapper">
+          <a href="#" class="main_nav__toggle-menu">
+            <svg id="icon-hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 25" width="40" height="25">
+              <path d="M38 3H2L0 2V1l2-1h36l1 1v1l-1 1zm0 11H2l-2-1v-1l2-1h36l1 1v1l-1 1zm0 11H2l-2-1v-1l2-1h36l1 1v1l-1 1z">
+              </path>
+            </svg>
+          </a>
 
+          <ul class="main_nav__menu list">
+            <li class="site-list__item site-list__item--active">
+              <a href="#">Главная</a>
+            </li>
+            <li class="site-list__item">
+              <a href="contacts.html">Контакты</a>
+            </li>
+          </ul>
+        </div>
+        <a href="#" class="main_nav__logo logo">
+          <img class="logo__image" src="img/logo.png" width="50" height="50" alt="Workouts">
+        </a>
+        <form class="main_nav__search-form search-form" action="https://echo.htmlacademy.ru" method="post">
+          <label for="search"></label>
+          <input class="search-form__input" id="search" aria-label="поиск" type="text" name="key-word" placeholder="Поиск по сайту">
+          <button class="search-form__button" type="submit"></button>
+        </form>
+      </nav>
+    </div>
+  </header>
 
   <main class="page__main main">
     <section class="main__blocks blocks">
@@ -65,21 +66,21 @@
   </main>
 
   <footer class="page__footer main-footer">
-    <div class="main-footer__wrapper">
-      <a class="main-footer__logo logo logo--footer">
-        <img class="logo__image" src="img/logo-footer.svg" width="128px" height="24px" alt="Workouts">
+    <div class="container">
+      <a class="main-footer__logo logo">
+        <img class="logo__image" src="img/logo.png" width="50" height="50" alt="Workouts">
       </a>
 
-      <ul class="main-footer__social social list list--none">
+      <ul class="main-footer__social social list">
         <li class="social__item">
-          <a class="social__link social__link--vkontakte" href="https://vk.com/htmlacademy">Мы в Вконтакте</a>
+          <a class="social__link social__link--facebook" href="#"><span class="visually-hidden">Мы в Фейсбуке</span></a>
         </li>
         <li class="social__item">
-          <a class="social__link social__link--instagram" href="https://www.instagram.com/htmlacademy">Мы в
-            Инстаграме</a>
+          <a class="social__link social__link--twitter" href="#"><span class="visually-hidden">Мы в Твитере</span></a>
         </li>
         <li class="social__item">
-          <a class="social__link social__link--facebook" href="https://www.facebook.com/htmlacademy">Мы в Фейсбуке</a>
+          <a class="social__link social__link--instagram" href="#"><span class="visually-hidden">Мы в
+            Инстаграме</span></a>
         </li>
       </ul>
     </div>

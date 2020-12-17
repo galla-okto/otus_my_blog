@@ -1,6 +1,7 @@
 :root {
     --basic-black: #000000;
     --basic-half-gray: #7E7E7E;
+    --basic-dark: #363636;
     --basic-grey-light: #E5E5E5;
     --basic-white: #FFFFFF;
 
@@ -81,6 +82,13 @@ input[type="radio"].visually-hidden {
     color: var(--special-yellow-light);
 }
 
+.container {
+    max-width: 1000px;
+
+    padding: 0;
+    margin: 0 auto;
+}
+
 .list,
 .footer-social {
   list-style: none;
@@ -109,7 +117,6 @@ input[type="radio"].visually-hidden {
 .main-header__navigation {
     height: 50px;
     width: 100%;
-    max-width: 1000px;
 
     position: relative;
     padding: 10px 0;
@@ -159,15 +166,10 @@ input[type="radio"].visually-hidden {
     display: none;
 }
 
-.main_nav__toggle-menu:hover .main_nav__menu {
+.main_nav__wrapper:hover .main_nav__menu,
+.main_nav__wrapper:focus-within .main_nav__menu {
     display: flex;
-    justify-content: flex-start;
-}
-
-.main_nav__a1:hover .main_nav__menu,
-.main_nav__a1:focus-within .main_nav__menu {
-    display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
 }
 
 .main_nav__logo {
@@ -225,3 +227,29 @@ input[type="radio"].visually-hidden {
     border: none;
     outline: none;
 }
+
+.main-footer {
+  color: var(--basic-white);
+  background-color: var(--basic-dark);
+
+  padding: 0;
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+.social__item a {
+  color: var(--basic-white);
+}
+
+.social__link-fb {
+  background-image: url("../img/fb.svg");
+}
+
+.social__link--twitter {
+  background-image: url("../img/twitter.svg");
+}
+
+.social__link-instagram {
+  background-image: url("../img/instagram.svg");
+}
+
