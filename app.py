@@ -1,29 +1,41 @@
-from werkzeug.exceptions import NotFound
-from flask import Blueprint, render_template
+from flask import Flask, request, render_template
+from flask_migrate import Migrate
 
-post_app = Blueprint("post_app", __name__)
+import config
+from views.posts import post_app
+from models.database import db
 
-POSTS = {
-    1: "post1",
-    2: "post2",
-    3: "post3",
-    4: "post4",
-    5: "post5"
-}
+app = Flask(__name__)
+app.register_blueprint(post_app, url_prefix="/posts")
 
-@post_app.route("/", endpoint="posts_list")
-def posts_list():
-    return render_template("posts/posts_list.html", products=POSTS)
+app.config.update(
+    SQLALCHEMY_DATABASE_URI=config.SQLALCHEMY_DATABASE_URI,
+    SQLALCHEMY_TRACK_MODIFICATIONS=False,
+)
 
-@post_app.route("/<int:post_id>/", endpoint="posts_detail")
-def post_detail(post_id):
-    try:
-        post_name = POSTS[post_id]
-    except KeyError:
-        raise NotFound(f"Post #{post_id} not found!")
+db.init_app(app)
+Migrate(app, db, compare_type=True)
 
-    return render_template(
-        "posts/post_detail.html",
-        post_id=post_id,
-        post_name=post_name,
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        return "Hello POST!!"
+    name = request.args.get("name") or "World"
+    return render_template("index.html", name=name)
+
+@app.cli.command('init-db', with_appcontext=True)
+def initialize_db():
+    """
+    Create initial db
+    # not use due to Flask-Migrate
+    """
+    print("Do init db")
+    db.create_all()
+    print("init db done")
+
+if __name__ == "__main__":
+    app.run(
+        host="localhost",
+        port=5000,
+        debug=True
     )

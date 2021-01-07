@@ -1,0 +1,36 @@
+{% extends 'posts/base.html' %}
+
+{% block title -%}
+    Workouts
+{%- endblock %}
+
+{% block body %}
+<main class="page__main main container">
+    <section class="main__blocks blocks">
+        <ul class="blocks__list list list--none">
+            {% for post in posts %}
+                <li class="blocks__item block">
+                    <div class="block__image">
+                        <img src="{{ url_for('static', filename='img/images01.jfif') }}"
+                          alt="The Top 10 Benefits of Regular Exercise">
+                    </div>
+                    <div class="block__container">
+                        <h3 class="block__title">
+                            {{ post.title -}}
+                        </h3>
+                        <p class="block__text">
+                            {{ post.text -}}
+                        </p>
+
+                        <a class="block__link button" href="{{ url_for('post_app.post_detail', post_id=post.id)}}">more</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+
+
+    <hr>
+    <h3><a href="{{ url_for('post_app.add_post') }}">Add post</a></h3>
+{% endblock %}

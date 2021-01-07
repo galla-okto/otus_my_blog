@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, Session
 
-engine = create_engine("sqlite:///my_post.db")
+engine = create_engine("sqlite:///app.db")
 metadata = MetaData(bind=engine)
 Base = declarative_base(bind=engine)
 

@@ -1,0 +1,21 @@
+{% extends 'posts/base.html' %}
+
+{% block title -%}
+    Add new post
+{%- endblock %}
+
+{% block body %}
+    <form method="post">
+        <div class="mb-3">
+            <label for="input-name" class="form-label">Post name:</label>
+            <input id="input-name" name="post_name" type="text" class="form-control">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="is-new" id="check-is-new">
+            <label class="form-check-label" for="check-is-new">
+                Post is new
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

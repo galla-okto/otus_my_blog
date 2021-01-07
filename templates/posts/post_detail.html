@@ -1,0 +1,26 @@
+{% extends 'posts/base.html' %}
+
+{% block title -%}
+    Post #{{ post.id }}
+{%- endblock %}
+
+{% block body %}
+    <main class="page__one-block one-block container">
+        <section class="one--block__details details">
+            <div class="details__image">
+                <img src="{{ url_for('static', filename='img/images01.jfif') }}"
+                    alt="The Top 10 Benefits of Regular Exercise">
+            </div>
+
+            <div class="details__container">
+                <h3 class="details__title">
+                  {{ post.title -}}
+                </h3>
+
+                <p class="details__text">
+                  {{ post.text -}}
+                </p>
+            </div>
+        </section>
+    </main>
+{% endblock %}

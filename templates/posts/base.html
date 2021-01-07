@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="page_whole" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% block title -%}
+            Base
+        {%- endblock %}
+    </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="page">
+    <header class="page__header main-header">
+        <div class="container">
+          <nav class="main-header__navigation main_nav">
+            <div class="main_nav__wrapper">
+              <a href="#" class="main_nav__toggle-menu">
+                <svg id="icon-hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 25" width="40" height="25">
+                  <path d="M38 3H2L0 2V1l2-1h36l1 1v1l-1 1zm0 11H2l-2-1v-1l2-1h36l1 1v1l-1 1zm0 11H2l-2-1v-1l2-1h36l1 1v1l-1 1z">
+                  </path>
+                </svg>
+              </a>
+
+              <ul class="main_nav__menu list">
+                <li class="site-list__item site-list__item--active">
+                  <a href="{{ url_for('post_app.posts_list') }}">Главная</a>
+                </li>
+                <li class="site-list__item">
+                  <a href="contacts.html">Контакты</a>
+                </li>
+              </ul>
+            </div>
+            <a href="#" class="main_nav__logo logo">
+              <img class="logo__image" src="{{ url_for('static', filename='img/logo.png') }}" width="50" height="50" alt="Workouts">
+            </a>
+            <form class="main_nav__search-form search-form" action="https://otus.ru" method="post">
+              <label for="search"></label>
+              <input class="search-form__input" id="search" aria-label="поиск" type="text" name="key-word" placeholder="Поиск по сайту">
+              <button class="search-form__button" type="submit"></button>
+            </form>
+          </nav>
+        </div>
+    </header>
+
+    {% block body %}
+        <h1>Base body</h1>
+    {% endblock %}
+
+   <footer class="page__footer main-footer">
+       <div class="container container-row">
+          <a class="main-footer__logo logo">
+            <img class="logo__image" src="{{ url_for('static', filename='img/logo.png') }}" width="50" height="50" alt="Workouts">
+          </a>
+
+          <ul class="main-footer__social social list">
+            <li class="social__item">
+              <a class="social__link social__link--facebook" href="#"><span class="visually-hidden">Мы в Фейсбуке</span></a>
+            </li>
+            <li class="social__item">
+              <a class="social__link social__link--twitter" href="#"><span class="visually-hidden">Мы в Твитере</span></a>
+            </li>
+            <li class="social__item">
+              <a class="social__link social__link--instagram" href="#"><span class="visually-hidden">Мы в
+                Инстаграме</span></a>
+            </li>
+          </ul>
+       </div>
+   </footer>
+</body>
+</html>
